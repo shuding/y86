@@ -1,0 +1,103 @@
+
+code-container {
+  flex-grow: 1;
+}
+
+code-container > pre {
+  max-height: 400px;
+  margin: 0;
+  padding: 2px;
+  border: 1px solid #37F3FF;
+  white-space: inherit;
+  overflow: scroll;
+}
+
+code-container > pre > code {
+  position: relative;
+  display: block;
+  min-width: 100%;
+  padding-bottom: 2px;
+  border-bottom: 1px solid;
+  font-size: 14px;
+}
+
+code-container > h2 {
+  position: relative;
+  display: inline-block;
+  margin: 0 2px -3px 0;
+  padding: 0 10px;
+  cursor: pointer;
+  font-size: 1.2em;
+  max-width: 150px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+code-container > h2:first-of-type {
+  margin-left: 10px;
+}
+
+code-container > h2:not(.active):hover {
+  background-color: #005256;
+}
+
+code-container .tab {
+  display: inline-block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  z-index: -1;
+  border: 1px solid #2F6669;
+  border-bottom: none;
+  cursor: pointer;
+}
+
+code-container input[type=file] {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+code-container h2.active {
+  color: #000;
+}
+
+code-container h2.active .tab {
+  background-color: #37F3FF;
+  border: 1px solid #37F3FF;
+}
+
+code-line-indicator {
+  position: absolute;
+  width: 100%;
+  height: 1.2em;
+  background-color: #016A6F;
+  mix-blend-mode: lighten;
+  transition: top 80ms ease-out;
+}
+
+code-line {
+  display: block;
+  height: 1.2em;
+  white-space: pre;
+}
+
+code-line:hover {
+  font-weight: 900;
+  color: #00F2FF;
+  background-color: #002B2D;
+}
+
+code-line > span.line-number {
+  display: inline-block;
+  width: 30px;
+  padding-right: 4px;
+  text-align: right;
+  color: #00C2CE;
+  background-color: #002B2D;
+}

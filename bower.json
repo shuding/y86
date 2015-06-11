@@ -1,0 +1,26 @@
+{
+  "name": "Y86",
+  "version": "0.0.1",
+  "authors": [
+    "quietshu <ds303077135@gmail.com>"
+  ],
+  "description": "Y86-Simulator for Fudan ICS 2015",
+  "main": "index.html",
+  "keywords": [
+    "Y86"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-route": "~1.4.0",
+    "requirejs": "~2.1.18",
+    "angular": "~1.4.0",
+    "move.js": "~0.3.3"
+  }
+}

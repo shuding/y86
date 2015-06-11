@@ -1,0 +1,15 @@
+
+board, board.top-line {
+  position: absolute;
+  display: block;
+  left: 15px;
+  right: 15px;
+  top: 15px;
+  bottom: 15px;
+  padding: 10px;
+}
+
+board small {
+  float: right;
+  font-size: 13px;
+}

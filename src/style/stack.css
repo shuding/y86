@@ -1,0 +1,14 @@
+
+stack-container > div {
+  max-height: 300px;
+  font-family: 'Courier New', monospace;
+  overflow: scroll;
+}
+
+stack > div > span:last-of-type {
+  font-weight: 900;
+  color: #0ADCE6;
+  border-left: 1px solid;
+  padding-left: 3px;
+  margin-left: 3px;
+}

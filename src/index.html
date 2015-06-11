@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="y86">
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Y86 Simulator</title>
+
+  <script src="../bower_components/angular/angular.min.js"></script>
+  <script src="../bower_components/angular-route/angular-route.min.js"></script>
+
+  <script src="script/kernels/main.js"></script>
+
+  <script src="script/controllers/main.js"></script>
+
+  <script src="script/directives/board.js"></script>
+  <script src="script/directives/register.js"></script>
+  <script src="script/directives/stack.js"></script>
+  <script src="script/directives/clock.js"></script>
+  <script src="script/directives/condition.js"></script>
+  <script src="script/directives/control.js"></script>
+  <script src="script/directives/cpi.js"></script>
+  <script src="script/directives/code.js"></script>
+  <script src="script/directives/pipe.js"></script>
+
+  <link rel="stylesheet" href="../bower_components/font-awesome/css/font-awesome.min.css">
+
+  <link rel="stylesheet" href="style/main.css">
+  <link rel="stylesheet" href="style/board.css">
+  <link rel="stylesheet" href="style/register.css">
+  <link rel="stylesheet" href="style/stack.css">
+  <link rel="stylesheet" href="style/clock.css">
+  <link rel="stylesheet" href="style/condition.css">
+  <link rel="stylesheet" href="style/control.css">
+  <link rel="stylesheet" href="style/cpi.css">
+  <link rel="stylesheet" href="style/code.css">
+  <link rel="stylesheet" href="style/pipe.css">
+
+</head>
+<body ng-controller="mainCtrl">
+
+  <board class="top-line">
+
+    <flex-container>
+
+      <control-container>
+        <frequency-label hz="player.hz" style="left: {{ player.hz * 4 + 20 }}px"></frequency-label>
+        <div>
+          <prev fn="prev()"></prev>
+          <play-pause icon="state.icons[state.icon]" fn="play()"></play-pause>
+          <next fn="next()"></next>
+          <reset fn="reset()"></reset>
+        </div>
+        <frequency hz="player.hz"></frequency>
+      </control-container>
+
+      <cpi-container></cpi-container>
+
+    </flex-container>
+
+    <flex-container class="top-line">
+      <div class="top-dotted">
+        <clock-container class="container container-line container-left">
+          <clock data="clock.data"></clock>
+        </clock-container>
+
+        <register-container class="container container-line container-left">
+          <register ng-repeat="(key, value) in registers" reg-name="key" reg-data="value | toHex: 8"></register>
+        </register-container>
+      </div>
+
+      <code-container class="container container-line top-dotted">
+        <code-line-indicator style="top: {{ code.current * 1.2 }}em"></code-line-indicator>
+        <code-line ng-repeat="line in code.lines track by $index" line-number="$index+1" line-content="line"></code-line>
+      </code-container>
+
+      <div class="top-dotted">
+        <condition-container class="container container-line container-right">
+          <condition ng-repeat="(key, value) in conditions" cond-name="key" cond-data="value"></condition>
+        </condition-container>
+
+        <stack-container class="container container-line container-right">
+          <stack ng-repeat="data in memory.data track by $index"><span>{{ $index * 4 | toHex: 4 }}</span><span>{{ data[0] | toHex: 2 }}{{ data[1] | toHex: 2 }}{{ data[2] | toHex: 2 }}{{ data[3] | toHex: 2 }}</span></stack>
+        </stack-container>
+      </div>
+    </flex-container>
+
+    <flex-container class="top-line" style="flex-direction: column">
+      <fetch>
+        <pipe-attr pipe-name="'predPC'" pipe-data="parser.CPU.Input.F_predPC | toHex: 8" pipe-pref="'0x'"></pipe-attr>
+        <pipe-attr pipe-name="'instructions'" pipe-data="parser.CPU.instruction"></pipe-attr>
+        <pipe-attr pipe-name="'CPI'" pipe-data="parser.CPU.cpi[parser.CPU.cycle] | round"></pipe-attr>
+        <pipe-attr></pipe-attr>
+        <pipe-attr></pipe-attr>
+        <pipe-attr></pipe-attr>
+        <pipe-attr></pipe-attr>
+        <pipe-attr></pipe-attr>
+        <pipe-attr></pipe-attr>
+        <pipe-attr></pipe-attr>
+      </fetch>
+      <decode>
+        <pipe-attr pipe-name="'stat'" pipe-data="constantMap.stat[parser.CPU.Input.D_stat]"></pipe-attr>
+        <pipe-attr pipe-name="'icode'" pipe-data="constantMap.icode[parser.CPU.Input.D_icode]"></pipe-attr>
+        <pipe-attr pipe-name="'ifun'" pipe-data="parser.CPU.Input.D_ifun"></pipe-attr>
+        <pipe-attr pipe-name="'rA'" pipe-data="constantMap.reg[parser.CPU.Input.D_rA]||'R_NONE'"></pipe-attr>
+        <pipe-attr pipe-name="'rB'" pipe-data="constantMap.reg[parser.CPU.Input.D_rB]||'R_NONE'"></pipe-attr>
+        <pipe-attr pipe-name="'valC'" pipe-data="parser.CPU.Input.D_valC | toHex: 8" pipe-pref="'0x'"></pipe-attr>
+        <pipe-attr pipe-name="'valP'" pipe-data="parser.CPU.Input.D_valP | toHex: 8" pipe-pref="'0x'"></pipe-attr>
+        <pipe-attr></pipe-attr>
+        <pipe-attr></pipe-attr>
+        <pipe-attr></pipe-attr>
+      </decode>
+      <execute>
+        <pipe-attr pipe-name="'stat'" pipe-data="constantMap.stat[parser.CPU.Input.E_stat]"></pipe-attr>
+        <pipe-attr pipe-name="'icode'" pipe-data="constantMap.icode[parser.CPU.Input.E_icode]"></pipe-attr>
+        <pipe-attr pipe-name="'ifun'" pipe-data="parser.CPU.Input.E_ifun"></pipe-attr>
+        <pipe-attr pipe-name="'valC'" pipe-data="parser.CPU.Input.E_valC | toHex: 8" pipe-pref="'0x'"></pipe-attr>
+        <pipe-attr pipe-name="'valA'" pipe-data="parser.CPU.Input.E_valA | toHex: 8" pipe-pref="'0x'"></pipe-attr>
+        <pipe-attr pipe-name="'valB'" pipe-data="parser.CPU.Input.E_valB | toHex: 8" pipe-pref="'0x'"></pipe-attr>
+        <pipe-attr pipe-name="'dstE'" pipe-data="constantMap.reg[parser.CPU.Input.E_dstE]||'R_NONE'"></pipe-attr>
+        <pipe-attr pipe-name="'dstM'" pipe-data="constantMap.reg[parser.CPU.Input.E_dstM]||'R_NONE'"></pipe-attr>
+        <pipe-attr pipe-name="'srcA'" pipe-data="constantMap.reg[parser.CPU.Input.E_srcA]||'R_NONE'"></pipe-attr>
+        <pipe-attr pipe-name="'srcB'" pipe-data="constantMap.reg[parser.CPU.Input.E_srcB]||'R_NONE'"></pipe-attr>
+      </execute>
+      <memory>
+        <pipe-attr pipe-name="'stat'" pipe-data="constantMap.stat[parser.CPU.Input.M_stat]"></pipe-attr>
+        <pipe-attr pipe-name="'icode'" pipe-data="constantMap.icode[parser.CPU.Input.M_icode]"></pipe-attr>
+        <pipe-attr pipe-name="'valE'" pipe-data="parser.CPU.Input.M_valE | toHex: 8" pipe-pref="'0x'"></pipe-attr>
+        <pipe-attr pipe-name="'valA'" pipe-data="parser.CPU.Input.M_valA | toHex: 8" pipe-pref="'0x'"></pipe-attr>
+        <pipe-attr pipe-name="'dstE'" pipe-data="constantMap.reg[parser.CPU.Input.M_dstE]||'R_NONE'"></pipe-attr>
+        <pipe-attr pipe-name="'dstM'" pipe-data="constantMap.reg[parser.CPU.Input.M_dstM]||'R_NONE'"></pipe-attr>
+        <pipe-attr></pipe-attr>
+        <pipe-attr></pipe-attr>
+        <pipe-attr></pipe-attr>
+        <pipe-attr></pipe-attr>
+      </memory>
+      <write-back>
+        <pipe-attr pipe-name="'stat'" pipe-data="constantMap.stat[parser.CPU.Input.W_stat]"></pipe-attr>
+        <pipe-attr pipe-name="'icode'" pipe-data="constantMap.icode[parser.CPU.Input.W_icode]"></pipe-attr>
+        <pipe-attr pipe-name="'valE'" pipe-data="parser.CPU.Input.W_valE | toHex: 8" pipe-pref="'0x'"></pipe-attr>
+        <pipe-attr pipe-name="'valM'" pipe-data="parser.CPU.Input.W_valM | toHex: 8" pipe-pref="'0x'"></pipe-attr>
+        <pipe-attr pipe-name="'dstE'" pipe-data="constantMap.reg[parser.CPU.Input.W_dstE]||'R_NONE'"></pipe-attr>
+        <pipe-attr pipe-name="'dstM'" pipe-data="constantMap.reg[parser.CPU.Input.W_dstM]||'R_NONE'"></pipe-attr>
+        <pipe-attr></pipe-attr>
+        <pipe-attr></pipe-attr>
+        <pipe-attr></pipe-attr>
+        <pipe-attr></pipe-attr>
+      </write-back>
+    </flex-container>
+
+  </board>
+
+  <script src="../bower_components/move.js/move.min.js"></script>
+</body>
+</html>

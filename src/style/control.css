@@ -1,0 +1,130 @@
+
+control-container > div {
+  display: flex;
+  width: 300px;
+  font-size: 0;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Overwrites */
+
+control-container input,
+control-container input:focus,
+control-container input:active,
+control-container button {
+  border: none;
+  outline: none;
+  color: #37F3FF;
+  background: none;
+  -webkit-appearance: none;
+}
+
+control-container input[type=text] {
+  width: 2em;
+  text-align: center;
+  border-bottom: 1px solid #186065;
+}
+
+/**/
+
+frequency {
+  height: 30px;
+  line-height: 20px;
+  font-size: 12px;
+}
+
+#frequency-input {
+  width: 200px;
+  height: 1px;
+  vertical-align: middle;
+  -webkit-appearance: none;
+  background: #23868E;
+  cursor: pointer;
+  transition: all .3s ease;
+}
+
+#frequency-input::-webkit-slider-thumb {
+  width: 2px;
+  height: 15px;
+  -webkit-appearance: none;
+  background: #23868E;
+  cursor: pointer;
+  transition: all .3s ease;
+}
+
+#frequency-input::-moz-range-thumb {
+  width: 2px;
+  height: 15px;
+  background: #23868E;
+  border: none;
+  cursor: pointer;
+  transition: all .3s ease;
+}
+
+#frequency-input::-moz-range-track {
+  background: #23868E;
+}
+
+#frequency-input:hover, #frequency-input:active {
+  background: #21A0A7;
+}
+
+#frequency-input:hover::-webkit-slider-thumb {
+  height: 20px;
+  background: #37F3FF;
+}
+
+#frequency-input:active::-webkit-slider-thumb {
+  height: 20px;
+  background: #37F3FF;
+}
+
+#frequency-input:hover::-moz-range-thumb {
+  height: 20px;
+  background: #37F3FF;
+}
+
+#frequency-input:active::-moz-range-thumb {
+  height: 20px;
+  background: #37F3FF;
+}
+
+frequency-label {
+  position: absolute;
+  bottom: 4px;
+  display: inline-block;
+  padding-left: 28px;
+  width: 50px;
+  font-size: 10px;
+  font-weight: 900;
+  text-align: left;
+  z-index: 1;
+}
+
+/* Buttons */
+
+control-container button {
+  min-width: 35px;
+  padding: 6px 9px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bolder;
+  font-family: inherit;
+  border: 1px solid rgba(0, 0, 0, 0);
+  -webkit-font-smoothing: subpixel-antialiased;
+  cursor: pointer;
+  transition: all .2s ease;
+}
+
+control-container button:hover {
+  color: #37F3FF;
+  border-top: 1px solid #07939C;
+  background-color: rgba(55, 243, 255, 0.08);
+}
+
+control-container {
+  position: relative;
+  display: block;
+}
+

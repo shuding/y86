@@ -1,0 +1,46 @@
+                      | /* $begin code-yso */
+                      | /* $begin code-ysa */
+                      | # Execution begins at address 0
+  0x000:              | 	.pos 0
+  0x000: 308400010000 | init:	irmovl Stack, %esp  	# Set up Stack pointer
+  0x006: 308500010000 | 	irmovl Stack, %ebp  	# Set up base pointer
+  0x00c: 7024000000   | 	jmp Main		# Execute main program
+                      |
+                      | # Array of 4 elements
+  0x014:              | 	.align 4
+  0x014: 0d000000     | array:	.long 0xd
+  0x018: c0000000     | 	.long 0xc0
+  0x01c: 000b0000     | 	.long 0xb00
+  0x020: 00a00000     | 	.long 0xa000
+                      |
+  0x024: 308004000000 | Main:	irmovl $4,%eax
+  0x02a: a008         | 	pushl %eax	# Push 4
+  0x02c: 308214000000 | 	irmovl array,%edx
+  0x032: a028         | 	pushl %edx      # Push array
+  0x034: 803a000000   | 	call Sum	# Sum(array, 4)
+  0x039: 10           | 	halt
+                      |
+                      | /* $begin sum-ys 0 */
+                      | 	# int Sum(int *Start, int Count)
+  0x03a: a058         | Sum:	pushl %ebp
+  0x03c: 2045         | 	rrmovl %esp,%ebp
+  0x03e: 501508000000 | 	mrmovl 8(%ebp),%ecx 	# ecx = Start
+  0x044: 50250c000000 | 	mrmovl 12(%ebp),%edx	# edx = Count
+  0x04a: 308000000000 | 	irmovl $0, %eax		# sum = 0
+  0x050: 6222         | 	andl   %edx,%edx
+  0x052: 7374000000   | 	je     End
+  0x057: 506100000000 | Loop:	mrmovl (%ecx),%esi      # get *Start
+  0x05d: 6060         | 	addl %esi,%eax          # add to sum
+  0x05f: 308304000000 | 	irmovl $4,%ebx          #
+  0x065: 6031         | 	addl %ebx,%ecx          # Start++
+  0x067: 3083ffffffff | 	irmovl $-1,%ebx	        #
+  0x06d: 6032         | 	addl %ebx,%edx          # Count--
+  0x06f: 7457000000   | 	jne    Loop             # Stop when 0
+  0x074:              | End:
+  0x074: b058         | 	popl %ebp
+  0x076: 90           | 	ret
+                      | /* $end sum-ys 0 */
+  0x100:              | 	.pos 0x100
+  0x100:              | Stack:	# The stack goes here
+                      | /* $end code-ysa */
+                      | /* $end code-yso */

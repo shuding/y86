@@ -1,0 +1,5 @@
+  0x0000: 30820a000000 | irmovl $10,%edx
+  0x0006: 308203000000 | irmovl $3,%edx
+  0x000c: 2020         | rrmovl %edx,%eax
+  0x000e: 10           | halt
+                       | 

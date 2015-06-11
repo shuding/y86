@@ -1,0 +1,18 @@
+
+register-container {
+  padding: 10px;
+}
+
+register {
+  display: block;
+}
+
+.register-name {
+  color: #188188;
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.register-data {
+  font-family: 'Courier New', monospace;
+}

@@ -1,0 +1,72 @@
+cpi-container {
+  display: block;
+}
+
+cpi-container > div {
+  display: flex;
+  position: relative;
+  margin-right: 20px;
+  box-shadow: 0 0 0 1px #23868E;
+}
+
+cpi-container > h6 {
+  position: absolute;
+  margin: 0;
+  padding: 3px;
+  z-index: 1;
+}
+
+cpi-container > div > canvas {
+  width: 100%;
+}
+
+#cpi-input {
+  position: absolute;
+  width: 100%;
+  height: 50px;
+  margin: 0;
+  vertical-align: middle;
+  -webkit-appearance: none;
+  background: transparent;
+  cursor: pointer;
+  outline: none;
+  transition: all .3s ease;
+}
+
+#cpi-input::-webkit-slider-thumb {
+  width: 1px;
+  height: 50px;
+  -webkit-appearance: none;
+  background: #23868E;
+  cursor: pointer;
+  transition: all .3s ease;
+}
+
+#cpi-input::-moz-range-thumb {
+  width: 1px;
+  height: 50px;
+  background: #23868E;
+  border: none;
+  cursor: pointer;
+  transition: all .3s ease;
+}
+
+#cpi-input::-moz-range-track {
+  background: #23868E;
+}
+
+#cpi-input:hover::-webkit-slider-thumb {
+  background: #37F3FF;
+}
+
+#cpi-input:active::-webkit-slider-thumb {
+  background: #37F3FF;
+}
+
+#cpi-input:hover::-moz-range-thumb {
+  background: #37F3FF;
+}
+
+#cpi-input:active::-moz-range-thumb {
+  background: #37F3FF;
+}

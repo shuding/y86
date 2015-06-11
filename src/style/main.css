@@ -1,0 +1,181 @@
+@font-face {
+  font-family: 'Jura';
+  font-weight: 100;
+  src: url(../font/Jura/Jura-Light.ttf);
+}
+
+@font-face {
+  font-family: 'Jura';
+  font-weight: 300;
+  src: url(../font/Jura/Jura-Regular.ttf);
+}
+
+@font-face {
+  font-family: 'Jura';
+  font-weight: 600;
+  src: url(../font/Jura/Jura-Medium.ttf);
+}
+
+@font-face {
+  font-family: 'Jura';
+  font-weight: 900;
+  src: url(../font/Jura/Jura-DemiBold.ttf);
+}
+
+/* Overwrites */
+
+* {
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+
+::selection {
+  background: none;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  min-width: 960px;
+  margin: 0;
+  font-family: 'Jura', sans-serif;
+  color: #37F3FF;
+  background-color: #0B0B0B;
+  overflow: hidden;
+  font-kerning: auto;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, p, span, small, div {
+  cursor: default;
+}
+
+code, code span {
+  cursor: text;
+}
+
+h1, h2 {
+  margin: 0;
+  font-weight: 600;
+  text-shadow: 0 0 10px rgba(55, 243, 255, 0.6);
+}
+
+h1 {
+  float: right;
+  text-align: center;
+}
+
+h3 {
+  display: inline-block;
+  margin-bottom: 0;
+  padding-bottom: 4px;
+  border-bottom: 3px double #0E7379;
+}
+
+a {
+  display: inline-block;
+  color: #1CF2FF;
+  text-decoration: none;
+}
+
+.top-line {
+  position: relative;
+  border-top: 1px solid #0E7379;
+}
+
+.top-line:before {
+  content: "";
+  position: absolute;
+  display: block;
+  left: 2px;
+  top: -3px;
+  width: 1px;
+  height: 5px;
+  background-color: #17C3CD;
+}
+
+.top-line:after {
+  content: "";
+  position: absolute;
+  display: block;
+  right: 2px;
+  top: -3px;
+  width: 1px;
+  height: 5px;
+  background-color: #17C3CD;
+}
+
+.top-dotted {
+  margin: 5px 2px 0 2px;
+  border-top: 3px double #18474A;
+}
+
+.container {
+  padding: 10px;
+}
+
+.container-line > div {
+  padding: 5px;
+}
+
+.container-left {
+  text-align: left;
+}
+
+.container-left > h3 {
+  padding-right: 4px;
+}
+
+.container-right > h3 {
+  padding-left: 4px;
+}
+
+.container-right {
+  text-align: right;
+}
+
+.container-left > div {
+  border-left: 1px solid #0E7379;
+}
+
+.container-right > div {
+  border-right: 1px solid #0E7379;
+}
+
+flex-container {
+  display: flex;
+  align-items: flex-start;
+}
+
+/**/
+
+board {
+  perspective: 900px;
+}
+
+register-container {
+  display: block;
+}
+
+stack-container {
+  display: block;
+}
+
+code-container {
+}
+
+clock-container {
+  display: block;
+}
+
+condition-container {
+  display: block;
+}
