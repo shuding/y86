@@ -40,7 +40,7 @@
   <link rel="stylesheet" href="style/pipe.css">
 
 </head>
-<body ng-controller="mainCtrl">
+<body ng-controller="mainCtrl" style="-webkit-font-smoothing: auto">
 
   <board class="top-line">
 
@@ -57,7 +57,7 @@
         <frequency hz="player.hz"></frequency>
       </control-container>
 
-      <cpi-container></cpi-container>
+      <cpi-container style="-webkit-flex:1;flex:1;-webkit-flex-grow:1;flex-grow:1"></cpi-container>
 
     </flex-container>
 
@@ -72,7 +72,7 @@
         </register-container>
       </div>
 
-      <code-container class="container container-line top-dotted">
+      <code-container class="container container-line top-dotted" style="-webkit-flex-grow:1;flex-grow:1">
         <code-line-indicator style="top: {{ code.current * 1.2 }}em"></code-line-indicator>
         <code-line ng-repeat="line in code.lines track by $index" line-number="$index+1" line-content="line"></code-line>
       </code-container>
@@ -88,7 +88,7 @@
       </div>
     </flex-container>
 
-    <flex-container class="top-line" style="flex-direction: column">
+    <flex-container class="top-line" style="-webkit-flex-direction: column">
       <fetch>
         <pipe-attr pipe-name="'predPC'" pipe-data="parser.CPU.Input.F_predPC | toHex: 8" pipe-pref="'0x'"></pipe-attr>
         <pipe-attr pipe-name="'instructions'" pipe-data="parser.CPU.instruction"></pipe-attr>
@@ -154,5 +154,6 @@
   </board>
 
   <script src="../bower_components/move.js/move.min.js"></script>
+
 </body>
 </html>
