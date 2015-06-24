@@ -1,6 +1,7 @@
 
 code-container {
   flex-grow: 1;
+  -webikt-flex-grow: 1;
 }
 
 code-container > pre {

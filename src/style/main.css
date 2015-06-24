@@ -152,7 +152,10 @@ a {
 
 flex-container {
   display: flex;
+  display: -webkit-flex;
   align-items: flex-start;
+  -webkit-align-items: flex-start;
+  -ms-align-items: flex-start;
 }
 
 /**/

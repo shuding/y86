@@ -4,6 +4,7 @@
 */
 fetch, decode, execute, memory, write-back {
   display: flex;
+  display: -webkit-flex;
   width: 100%;
 }
 
@@ -15,9 +16,13 @@ fetch > h3, decode > h3, execute > h3, memory > h3, write-back > h3 {
 
 fetch > div, decode > div, execute > div, memory > div, write-back > div {
   display: flex;
+  display: -webkit-flex;
   flex: 1;
+  -webkit-flex: 1;
   align-items: center;
+  -webkit-align-items: center;
   justify-content: space-around;
+  -webkit-justify-content: space-around;
 }
 
 pipe-attr {
