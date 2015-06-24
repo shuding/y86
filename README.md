@@ -2,7 +2,7 @@
 
 《CSAPP》课程 project，Y86 流水线模拟器。
 
-我主要当成了 AngularJS & flex 布局 & UI 设计的练手项目（对模拟~~编译器（typo）~~ CPU 并不太喜欢），所以请轻点吐槽。
+请轻点吐槽。
 
 预览：[shud.in/y86](http://shud.in/y86)。
 
