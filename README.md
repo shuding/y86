@@ -2,8 +2,6 @@
 
 《CSAPP》课程 project，Y86 流水线模拟器。
 
-请轻点吐槽。
-
 预览：[http://quietshu.github.io/y86/](http://quietshu.github.io/y86/)。
 
 ## Notes
@@ -13,10 +11,9 @@
 
 ## Details
 
-1. 依赖于 Angular & Angular Route 的 MVVM 模式
+1. 依赖于 Angular & Angular Route
 2. 动画效果基于 CSS 3，选择了 move.js
 3. 自己写了个简易的 CommonJS 加载函数，以及简易的 canvas curve graph
-4. 还有些效果在开发中……
 
 ## License
 
