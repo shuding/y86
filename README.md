@@ -4,7 +4,7 @@
 
 请轻点吐槽。
 
-预览：[shud.in/y86](http://shud.in/y86)。
+预览：[http://quietshu.github.io/y86/](http://quietshu.github.io/y86/)。
 
 ## Notes
 
