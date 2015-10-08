@@ -1,6 +1,8 @@
 # Y86 Simulator
 
-Y86 is a classical project in book CS:APP3e. And [y86.js.org](http://y86.js.org) is a Y86 pipeline CPU simulator implemented with JavaScript, and has a sci-fi UI design.
+Y86 is a classical project in book CS:APP3e.
+
+And [y86.js.org](http://y86.js.org) is a Y86 pipeline CPU simulator implemented with JavaScript, and has a sci-fi UI design.
 
 ## Notes
 
