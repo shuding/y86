@@ -2,7 +2,7 @@
 
 Y86 is a classical project in book CS:APP3e.
 
-And [y86.js.org](http://y86.js.org) is a Y86 pipeline CPU simulator implemented with JavaScript, and has a sci-fi UI design.
+[y86.js.org](http://y86.js.org) is a Y86 pipeline CPU simulator implemented with JavaScript, and has a sci-fi UI design.
 
 ## Notes
 
@@ -11,7 +11,7 @@ And [y86.js.org](http://y86.js.org) is a Y86 pipeline CPU simulator implemented 
 
 ## Details
 
-Thanks [js.org](js.org) for the pretty [y86.js.org](y86.js.org) domain!
+Thanks [js.org](//js.org) for the pretty [y86.js.org](//y86.js.org) domain!
 
 1. Using Angular & Angular-route framework
 2. CSS3 animations by move.js
