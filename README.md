@@ -21,7 +21,7 @@ Thanks [js.org](//js.org) for the pretty [y86.js.org](//y86.js.org) domain!
 
 - Author: Shu Ding.
 - Thanks to: Linghao Zhang, Yifu Yu.
-- License: WTFPL (Do What the Fuck You Want to Public License).
+- License: MIT
 
 # Y86 Simulator
 
