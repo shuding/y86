@@ -8,7 +8,7 @@ angular
         return {
             restrict:   'E',
             transclude: true,
-            template:   '<h3>CONDITION</h3>' +
+            template:   '<h3>CONDITIONS</h3>' +
                         '<div ng-transclude="true"></div>'
         }
     })

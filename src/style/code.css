@@ -2,12 +2,13 @@
 code-container {
   flex-grow: 1;
   -webikt-flex-grow: 1;
+  height: 100%;
 }
 
 code-container > pre {
-  max-height: 400px;
   margin: 0;
   padding: 2px;
+  max-height: calc(100% - 30px);
   border: 1px solid #37F3FF;
   white-space: inherit;
   overflow: scroll;

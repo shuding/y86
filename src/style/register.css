@@ -3,6 +3,11 @@ register-container {
   padding: 10px;
 }
 
+register-container > div {
+  max-height: calc(100% - 40px);
+  overflow: scroll;
+}
+
 register {
   display: block;
 }

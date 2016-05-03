@@ -13,3 +13,12 @@ board small {
   float: right;
   font-size: 13px;
 }
+
+/* flexbox container */
+board > div {
+  display: flex;
+  display: -webkit-flex;
+  flex-direction: column;
+  -webkit-flex-direction: column;
+  height: 100%;
+}

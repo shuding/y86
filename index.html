@@ -5,12 +5,12 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=Edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <title>Y86 Simulator</title>
+  <title>Y86 Emulator</title>
 
   <base href="src/">
 
-  <script src="../bower_components/angular/angular.min.js"></script>
-  <script src="../bower_components/angular-route/angular-route.min.js"></script>
+  <script src="../lib/angular.min.js"></script>
+  <script src="../lib/angular-route.min.js"></script>
 
   <script src="script/kernels/main.js"></script>
 
@@ -26,7 +26,7 @@
   <script src="script/directives/code.js"></script>
   <script src="script/directives/pipe.js"></script>
 
-  <link rel="stylesheet" href="../bower_components/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="../lib/font-awesome.min.css">
 
   <link rel="stylesheet" href="style/main.css">
   <link rel="stylesheet" href="style/board.css">
@@ -44,7 +44,7 @@
 
   <board class="top-line">
 
-    <flex-container>
+    <flex-container class="rot-top">
 
       <control-container>
         <frequency-label hz="player.hz" style="left: {{ player.hz * 4 + 20 }}px"></frequency-label>
@@ -59,15 +59,19 @@
 
       <cpi-container style="-webkit-flex:1;flex:1;-webkit-flex-grow:1;flex-grow:1"></cpi-container>
 
+      <h1>Y86 Emulator<br/>
+        <small>Source code: <a href="https://github.com/quietshu/y86" target="_blank">GitHub</a>, by <a href="https://github.com/quietshu" target="_blank">@quietshu</a></small>
+      </h1>
+
     </flex-container>
 
-    <flex-container class="top-line">
-      <div class="top-dotted">
-        <clock-container class="container container-line container-left">
+    <flex-container class="top-line flex-grow">
+      <div class="top-dotted tool-sidebar">
+        <clock-container class="container container-line container-left rot-left">
           <clock data="clock.data"></clock>
         </clock-container>
 
-        <register-container class="container container-line container-left">
+        <register-container class="container container-line container-left flex-grow rot-left">
           <register ng-repeat="(key, value) in registers" reg-name="key" reg-data="value | toHex: 8"></register>
         </register-container>
       </div>
@@ -77,12 +81,12 @@
         <code-line ng-repeat="line in code.lines track by $index" line-number="$index+1" line-content="line"></code-line>
       </code-container>
 
-      <div class="top-dotted">
-        <condition-container class="container container-line container-right">
+      <div class="top-dotted tool-sidebar">
+        <condition-container class="container container-line container-right rot-right">
           <condition ng-repeat="(key, value) in conditions" cond-name="key" cond-data="value"></condition>
         </condition-container>
 
-        <stack-container class="container container-line container-right">
+        <stack-container class="container container-line container-right flex-grow rot-right">
           <stack ng-repeat="data in memory.data track by $index"><span>{{ $index * 4 | toHex: 4 }}</span><span>{{ data[0] | toHex: 2 }}{{ data[1] | toHex: 2 }}{{ data[2] | toHex: 2 }}{{ data[3] | toHex: 2 }}</span></stack>
         </stack-container>
       </div>
@@ -153,7 +157,7 @@
 
   </board>
 
-  <script src="../bower_components/move.js/move.min.js"></script>
+  <script src="../lib/move.min.js"></script>
 
 </body>
 </html>

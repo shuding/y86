@@ -1,6 +1,6 @@
 
 stack-container > div {
-  max-height: 300px;
+  max-height: calc(100% - 40px);
   font-family: 'Courier New', monospace;
   overflow: scroll;
 }

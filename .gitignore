@@ -76,7 +76,5 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
-# ignored components
-bower_components/font-awesome/less
-bower_components/font-awesome/scss
-bower_components/move.js/examples
+# ignored bower components
+bower_components

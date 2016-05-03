@@ -8,11 +8,7 @@ angular
         return {
             restrict:   'E',
             transclude: true,
-            template:   '<h1>Y86 Simulator<br/>' +
-                        '<small>Author: <a href="mailto:quietshu@gmail.com" target="_blank">Shu Ding</a>.' +
-                        ' Source: <a href="https://github.com/quietshu/y86" target="_blank">GitHub</a>.</small>' +
-                        '</h1>' +
-                        '<div ng-transclude="true"></div>'
+            template:   '<div ng-transclude="true"></div>'
         }
     })
     .directive('flex-container', function () {
