@@ -9,7 +9,7 @@
   "keywords": [
     "Y86"
   ],
-  "license": "WTFPL",
+  "license": "MIT",
   "ignore": [
     "**/.*",
     "node_modules",
