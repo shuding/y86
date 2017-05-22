@@ -48,12 +48,45 @@ body {
   margin: 0;
   font-family: 'Jura', sans-serif;
   color: #37F3FF;
-  background-color: #0B0B0B;
   overflow: hidden;
   font-kerning: auto;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   font-feature-settings: "liga" 0;
+  background: #0B0B0B;
+  background-image: url(/src/style/bg.png);
+  background-size: 20px 20px;
+  box-shadow: 0 0 20px 30px rgba(0, 0, 0, 0.5) inset;
+}
+
+body:before, body:after {
+  content: '';
+  display: block;
+  position: fixed;
+  width: 120vmin;
+  height: 120vmin;
+  pointer-events: none;
+  margin: auto;
+  left: 50%;
+  top: 50%;
+  border-radius: 100%;
+  border: 1px solid rgba(104, 246, 255, 0.22);
+  border-right-style: dashed;
+  border-left-style: dashed;
+  box-shadow: 0 0 0 10px rgba(55, 243, 255, 0.05);
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  z-index: -1;
+}
+
+body:before {
+  width: calc(100vmax - 10px);
+  height: calc(100vmax - 10px);
+  border-color: #008288;
+  border-style: dotted;
+  box-shadow: 0 0 100px rgba(55, 243, 255, 0.2), 0 0 100px rgb(0, 0, 0) inset;
 }
 
 h1, h2, h3, p, span, small, div {
@@ -78,7 +111,7 @@ h1 {
 h3 {
   display: inline-block;
   margin-bottom: 0;
-  padding-bottom: 4px;
+  padding-bottom: 2px;
   border-bottom: 3px double #0E7379;
 }
 
@@ -86,6 +119,10 @@ a {
   display: inline-block;
   color: #1CF2FF;
   text-decoration: none;
+}
+
+.shadow-bg {
+  background: rgba(0, 0, 0, 0.4);
 }
 
 .top-line {
@@ -173,6 +210,7 @@ flex-container {
 .flex-grow {
   flex: 1;
   -webkit-flex: 1;
+  padding: 10px 0;
   overflow: hidden;
 }
 
@@ -208,9 +246,9 @@ condition-container {
 }
 
 .rot-left {
-  transform: rotateY(5deg);
+  transform: rotateY(10deg) scaleX(0.9);
 }
 
 .rot-right {
-  transform: rotateY(-5deg);
+  transform: rotateY(-10deg) scaleX(0.9);
 }

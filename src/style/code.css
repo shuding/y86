@@ -74,6 +74,13 @@ code-container h2.active .tab {
   border: 1px solid #37F3FF;
 }
 
+code-container .info {
+  font-size: 9px;
+  margin: 2px 0;
+  float: right;
+  color: rgba(55, 243, 255, 0.7);
+}
+
 code-line-indicator {
   position: absolute;
   width: 100%;
@@ -102,4 +109,26 @@ code-line > span.line-number {
   text-align: right;
   color: #00C2CE;
   background-color: #002B2D;
+}
+
+code-container:before {
+  content: '';
+  width: 3px;
+  height: 42px;
+  background: rgba(55, 243, 255, 0.8);
+  display: block;
+  position: absolute;
+  top: 48px;
+  margin-left: -3px;
+}
+
+code-container:after {
+  content: '';
+  width: 1px;
+  height: 100px;
+  background: rgba(55, 243, 255, 0.5);
+  display: block;
+  position: absolute;
+  bottom: 25px;
+  margin-left: -3px;
 }

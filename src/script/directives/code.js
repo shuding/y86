@@ -10,7 +10,7 @@ angular
             scope:      true,
             transclude: true,
             template:   '<h2 ng-repeat="tab in code.tabs" ng-class="{active: $index == code.currentTab}" ng-click="loadTab($index)"><span class="tab"></span>{{ tab }}</h2><h2><span class="tab"></span><input type="file">+</h2>' +
-                        '<pre><code ng-transclude="true"></code></pre>',
+                        '<pre><code ng-transclude="true"></code></pre><span class="info">WRITE ASSEMBLY CODE HERE</span>',
             link:       function ($scope, elem) {
                 var pre = elem.find('pre')[0];
                 $scope.$watch(function () {

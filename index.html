@@ -60,7 +60,7 @@
       <cpi-container style="-webkit-flex:1;flex:1;-webkit-flex-grow:1;flex-grow:1"></cpi-container>
 
       <h1>Y86 Emulator<br/>
-        <small>Source code: <a href="https://github.com/quietshu/y86" target="_blank">GitHub</a>, by <a href="https://github.com/quietshu" target="_blank">@quietshu</a></small>
+        <small>Source code: <a href="https://github.com/quietshu/y86" target="_blank">GitHub</a>, by <a href="https://github.com/quietshu" target="_blank">@shu</a></small>
       </h1>
 
     </flex-container>
@@ -92,18 +92,11 @@
       </div>
     </flex-container>
 
-    <flex-container class="top-line" style="-webkit-flex-direction: column">
+    <flex-container class="top-line shadow-bg" style="-webkit-flex-direction: column">
       <fetch>
         <pipe-attr pipe-name="'predPC'" pipe-data="parser.CPU.Input.F_predPC | toHex: 8" pipe-pref="'0x'"></pipe-attr>
         <pipe-attr pipe-name="'instructions'" pipe-data="parser.CPU.instruction"></pipe-attr>
         <pipe-attr pipe-name="'CPI'" pipe-data="parser.CPU.cpi[parser.CPU.cycle] | round"></pipe-attr>
-        <pipe-attr></pipe-attr>
-        <pipe-attr></pipe-attr>
-        <pipe-attr></pipe-attr>
-        <pipe-attr></pipe-attr>
-        <pipe-attr></pipe-attr>
-        <pipe-attr></pipe-attr>
-        <pipe-attr></pipe-attr>
       </fetch>
       <decode>
         <pipe-attr pipe-name="'stat'" pipe-data="constantMap.stat[parser.CPU.Input.D_stat]"></pipe-attr>
@@ -113,9 +106,6 @@
         <pipe-attr pipe-name="'rB'" pipe-data="constantMap.reg[parser.CPU.Input.D_rB]||'R_NONE'"></pipe-attr>
         <pipe-attr pipe-name="'valC'" pipe-data="parser.CPU.Input.D_valC | toHex: 8" pipe-pref="'0x'"></pipe-attr>
         <pipe-attr pipe-name="'valP'" pipe-data="parser.CPU.Input.D_valP | toHex: 8" pipe-pref="'0x'"></pipe-attr>
-        <pipe-attr></pipe-attr>
-        <pipe-attr></pipe-attr>
-        <pipe-attr></pipe-attr>
       </decode>
       <execute>
         <pipe-attr pipe-name="'stat'" pipe-data="constantMap.stat[parser.CPU.Input.E_stat]"></pipe-attr>
@@ -136,10 +126,6 @@
         <pipe-attr pipe-name="'valA'" pipe-data="parser.CPU.Input.M_valA | toHex: 8" pipe-pref="'0x'"></pipe-attr>
         <pipe-attr pipe-name="'dstE'" pipe-data="constantMap.reg[parser.CPU.Input.M_dstE]||'R_NONE'"></pipe-attr>
         <pipe-attr pipe-name="'dstM'" pipe-data="constantMap.reg[parser.CPU.Input.M_dstM]||'R_NONE'"></pipe-attr>
-        <pipe-attr></pipe-attr>
-        <pipe-attr></pipe-attr>
-        <pipe-attr></pipe-attr>
-        <pipe-attr></pipe-attr>
       </memory>
       <write-back>
         <pipe-attr pipe-name="'stat'" pipe-data="constantMap.stat[parser.CPU.Input.W_stat]"></pipe-attr>
@@ -148,10 +134,6 @@
         <pipe-attr pipe-name="'valM'" pipe-data="parser.CPU.Input.W_valM | toHex: 8" pipe-pref="'0x'"></pipe-attr>
         <pipe-attr pipe-name="'dstE'" pipe-data="constantMap.reg[parser.CPU.Input.W_dstE]||'R_NONE'"></pipe-attr>
         <pipe-attr pipe-name="'dstM'" pipe-data="constantMap.reg[parser.CPU.Input.W_dstM]||'R_NONE'"></pipe-attr>
-        <pipe-attr></pipe-attr>
-        <pipe-attr></pipe-attr>
-        <pipe-attr></pipe-attr>
-        <pipe-attr></pipe-attr>
       </write-back>
     </flex-container>
 
