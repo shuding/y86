@@ -1,31 +1,29 @@
-# Y86 Simulator
+# Y86 Emulator
 
-Y86 is a classical project in book CS:APP3e.
-
-[y86.js.org](http://y86.js.org) is a Y86 pipeline CPU simulator implemented with JavaScript, and has a sci-fi UI design.
+[y86.js.org](http://y86.js.org) is a JavaScript powered, Y86 pipeline CPU emulator with a sci-fi UI (Y86 is a classical project in book CS:APP3e).
 
 ![screenshot](screenshot.png)
 
 ## Notes
 
-1. All dependencies are packed (so I can use the `gh-pages` as the main branch)
-2. Please view `index.html` in a static HTTP server (XHR requests embeded), do NOT open it with `file://` protocol
+1. All dependencies are packed into the repo. Since I'm using `gh-pages` as the main branch.
+2. To open it locally, please host the static files under a HTTP server and do NOT open it with the `file://` protocol.
 
 ## Details
 
 Thanks [js.org](//js.org) for the pretty [y86.js.org](//y86.js.org) domain!
 
-1. Using Angular & Angular-route framework
-2. CSS3 animations by move.js
-3. Implemented a simple CommonJS module loader and a curve garph in canvas
+1. Using Angular1 & Angular-route
+2. move.js for CSS3 animations
+3. Implemented a simple CommonJS module loader and a canvas curve graph plotter
 
 ## License
 
-- Author: Shu Ding.
-- Thanks to: Linghao Zhang, Yifu Yu.
-- License: MIT
+- Author: Shu Ding
+- Special thanks: Linghao Zhang, Yifu Yu.
+- License: the MIT license
 
-# Y86 Simulator
+# Y86 Emulator
 
 《CSAPP》课程 project，Y86 流水线模拟器。预览：[y86.js.org](http://y86.js.org)。
 
