@@ -2,6 +2,8 @@
 
 [![](https://img.shields.io/website-up-down-green-red/http/y86.js.org.svg?label=y86.js.org)](http://y86.js.org)
 
+[![Code Sponsor](https://app.codesponsor.io/embed/QdwKVE7fTnAVX5yWKdrLPPCw/quietshu/y86.svg)](https://app.codesponsor.io/link/QdwKVE7fTnAVX5yWKdrLPPCw/quietshu/y86)
+
 [y86.js.org](http://y86.js.org) is a JavaScript powered, Y86 pipeline CPU emulator with a sci-fi UI (Y86 is a classic project in book CS:APP3e).
 
 ![screenshot](screenshot.png)
@@ -19,8 +21,6 @@
 2. To open it locally, please host the static files under a HTTP server. The `file://` protocol won't work.
 
 ## Acknowledgement
-
-[![Code Sponsor](https://app.codesponsor.io/embed/QdwKVE7fTnAVX5yWKdrLPPCw/quietshu/y86.svg)](https://app.codesponsor.io/link/QdwKVE7fTnAVX5yWKdrLPPCw/quietshu/y86)
 
 - Author: Shu Ding
 - Special thanks: Linghao Zhang, Yifu Yu.
