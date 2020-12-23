@@ -4,13 +4,13 @@
  */
 
 var Constant = require('script/kernels/constant');
-var CPU      = require('script/kernels/cpu');
+var CPU = require('script/kernels/cpu');
 
 module.exports = Parser;
 
 function Parser(text) {
     if (typeof text !== 'string' && !(text instanceof String)) {
-        throw new Error('Type error at `new Parser`');
+        throw new Error(`Type error at 'new Parser': text is ${text}`);
     }
 
     /**
@@ -18,14 +18,14 @@ function Parser(text) {
      * @param parser
      */
     function init(parser) {
-        parser.raw     = text;
+        parser.raw = text;
         parser.syntaxs = [];
-        parser.map     = {};
-        parser.lines   = [];
+        parser.map = {};
+        parser.lines = [];
         parser.regLine = /^\s*0[xX]([0-9a-fA-F]+)\s*:\s*([0-9a-fA-F]*)\s*\|.*$/;
 
         parser.Constant = Constant;
-        parser.CPU      = new CPU();
+        parser.CPU = new CPU();
 
         text.split('\n').forEach(function (rawLine, index) {
             parser.syntaxs.push(rawLine);
@@ -37,7 +37,7 @@ function Parser(text) {
                 }
 
                 try {
-                    var address     = parseInt(parts[1], 16);
+                    var address = parseInt(parts[1], 16);
                     var instruction = parts[2];
 
                     parser.map[address] = index;

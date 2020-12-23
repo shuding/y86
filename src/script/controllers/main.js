@@ -20,10 +20,10 @@ angular.module('y86', ['ngRoute']).controller('mainCtrl', ['$scope', mainCtrl]).
 
 function mainCtrl($scope) {
     var Constant = require('script/kernels/constant');
-    var Parser   = require('script/kernels/parser');
+    var Parser = require('script/kernels/parser');
 
     $scope.constantMap = {
-        stat:  {
+        stat: {
             0: 'STAT_BUB',
             1: 'STAT_AOK',
             2: 'STAT_HLT',
@@ -32,16 +32,16 @@ function mainCtrl($scope) {
             5: 'STAT_PIP'
         },
         icode: {
-            0:   'I_HALT',
-            1:   'I_NOP',
-            2:   'I_RRMOVL',
-            3:   'I_IRMOVL',
-            4:   'I_RMMOVL',
-            5:   'I_MRMOVL',
-            6:   'I_OPL',
-            7:   'I_JXX',
-            8:   'I_CALL',
-            9:   'I_RET',
+            0: 'I_HALT',
+            1: 'I_NOP',
+            2: 'I_RRMOVL',
+            3: 'I_IRMOVL',
+            4: 'I_RMMOVL',
+            5: 'I_MRMOVL',
+            6: 'I_OPL',
+            7: 'I_JXX',
+            8: 'I_CALL',
+            9: 'I_RET',
             0xa: 'I_PUSHL',
             0xb: 'I_POPL',
             0xc: 'I_IADDL',
@@ -67,8 +67,8 @@ function mainCtrl($scope) {
     };
 
     $scope.state = {
-        icons:  ['play', 'pause'],
-        icon:   0,
+        icons: ['play', 'pause'],
+        icon: 0,
         loaded: 0
     };
 
@@ -84,7 +84,7 @@ function mainCtrl($scope) {
     };
 
     $scope.memory = {
-        data:  [],
+        data: [],
         block: []
     };
 
@@ -99,15 +99,15 @@ function mainCtrl($scope) {
     };
 
     $scope.code = {
-        current:      0,
-        height:       0,
-        scrollTop:    0,
+        current: 0,
+        height: 0,
+        scrollTop: 0,
         scrollHeight: 0,
-        lineHeight:   14 * 1.2,
-        currentTab:   0,
-        tabs:         ['asum', 'List_Sum', 'Forward'],
-        tabFiles:     ['test/asum.yo', 'test/List_Sum.yo', 'test/Forward.yo'],
-        fileCache:    ['', '', '']
+        lineHeight: 14 * 1.2,
+        currentTab: 0,
+        tabs: ['asum', 'List_Sum', 'Forward'],
+        tabFiles: ['test/asum.yo', 'test/List_Sum.yo', 'test/Forward.yo'],
+        fileCache: []
     };
 
     $scope.player = {
@@ -117,14 +117,14 @@ function mainCtrl($scope) {
     // Functions
 
     $scope.initParser = function (parser) {
+
         if ($scope.parser && $scope.parser !== parser)
             delete $scope.parser;
 
-        $scope.parser      = parser;
-        $scope.code.lines  = parser.syntaxs;
-        $scope.clock.data  = parser.CPU.cycle;
+        $scope.parser = parser;
+        $scope.code.lines = parser.syntaxs;
+        $scope.clock.data = parser.CPU.cycle;
         $scope.memory.data = parser.CPU.Memory.data;
-
         // Clock Cycle
         $scope.$watch('parser.CPU.cycle', function (clock) {
             $scope.clock.data = clock;
@@ -183,24 +183,26 @@ function mainCtrl($scope) {
             $scope.code.scrollTop = Math.min($scope.code.scrollTop, $scope.code.scrollHeight - $scope.code.height);
             $scope.code.scrollTop = Math.max($scope.code.scrollTop, 0);
         });
+
     };
 
-    $scope.loadTab = function (index) {
+    $scope.loadTab = async function (index) {
         $scope.code.currentTab = index;
         $scope.reset();
     };
 
-    $scope.newTab = function (files) {
+    $scope.newTab = async function (files) {
         var readFile = function (index) {
-            if (!files[index])
+            if (!files[index]) {
                 return;
+            }
             if (files[index].name.split('.')[1] !== 'yo') {
                 alert('File type is not supported!');
                 return;
             }
             $scope.code.tabs.push(files[index].name.split('.')[0]);
             var reader = new FileReader();
-            reader.onload = function(event) {
+            reader.onload = function (event) {
                 $scope.code.fileCache.push(event.target.result);
                 $scope.$safeApply();
                 readFile(index + 1);
@@ -208,6 +210,23 @@ function mainCtrl($scope) {
             reader.readAsText(files[index]);
         };
         readFile(0);
+        await $scope.sleep(500);
+        $scope.loadTab($scope.code.fileCache.length - 1);
+        console.log($scope.code.fileCache[$scope.code.fileCache.length - 1])
+    };
+
+    $scope.removeTab = function () {
+        $scope.code.tabs.splice($scope.code.currentTab, 1);
+        $scope.code.fileCache.splice($scope.code.currentTab, 1);
+
+        if (!$scope.code.fileCache.length)
+            $scope.initParser(new Parser(""));
+        else if ($scope.code.currentTab !== 0)
+            $scope.loadTab($scope.code.currentTab - 1);
+
+        else
+            $scope.loadTab($scope.code.currentTab);
+
     };
 
     $scope.prev = function () {
@@ -247,13 +266,18 @@ function mainCtrl($scope) {
         return true;
     };
 
+    $scope.parserString = function () {
+        const curr = $scope.code.fileCache[$scope.code.currentTab];
+        return (curr === undefined) ? "" : curr;
+    }
+
     $scope.play = function () {
         $scope.state.icon ^= 1;
 
         if ($scope.state.icon) {
             if (!$scope.parser) {
                 // test
-                var parser = new Parser($scope.code.fileCache[$scope.code.currentTab] || ($scope.code.fileCache[$scope.code.currentTab] = xhrGETSync($scope.code.tabFiles[$scope.code.currentTab])));
+                var parser = new Parser($scope.parserString());
 
                 $scope.initParser(parser);
                 $scope.setInterval();
@@ -269,15 +293,30 @@ function mainCtrl($scope) {
             $scope.play();
         }
 
-        var parser = new Parser($scope.code.fileCache[$scope.code.currentTab] || ($scope.code.fileCache[$scope.code.currentTab] = xhrGETSync($scope.code.tabFiles[$scope.code.currentTab])));
-
+        var parser = new Parser($scope.parserString());
         $scope.initParser(parser);
     };
 
     // Initialization
 
+    $scope.sleep = async function (ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    $scope.init = function () {
+        for (const tabFile of $scope.code.tabFiles) {
+            $scope.code.fileCache.push(
+                xhrGETSync(tabFile)
+            );
+        }
+        $scope.initParser(
+            new Parser($scope.code.fileCache[0])
+        );
+        $scope.loadTab(0);
+    }
+
     setTimeout(function () {
-        $scope.reset();
+        $scope.init();
         $scope.$safeApply();
     }, 0);
 
